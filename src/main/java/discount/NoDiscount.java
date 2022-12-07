@@ -1,7 +1,5 @@
 package discount;
 
-import java.lang.constant.Constable;
-
 public class NoDiscount implements Discountable {
     @Override
     public double discount(double bill) {

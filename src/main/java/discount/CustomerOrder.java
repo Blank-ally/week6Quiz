@@ -5,32 +5,25 @@ public class CustomerOrder {
     private String customerName;
     private double billAmount;
     private char discountType;
+    private Discountable discount;
 
-    public CustomerOrder(String customerName, double billAmount, char discountType) {
+    public CustomerOrder(String customerName, double billAmount, Discountable discount) {
         this.customerName = customerName;
         this.billAmount = billAmount;
-        this.discountType = discountType;
+        this.discount = discount;
+
     }
 
     public double getBillAmount() {
-        double tempBill;
-        switch (discountType) {
-            case 'S':
-            case 's':
-                tempBill = billAmount - (billAmount * 0.1);
-                break;
-            case 'D':
-            case 'd':
-                tempBill = billAmount - (billAmount * 0.5);
-                break;
-            case 'L':
-            case 'l':
-                tempBill = billAmount - (billAmount * 0.75);
-                break;
-            default:
-                tempBill = billAmount;
-        }
-        return tempBill;
+        return discount.discount(billAmount);
+    }
+
+    public void setDiscount(Discountable discount) {
+        this.discount = discount;
+    }
+
+    public char getDiscountType() {
+        return discount.Discountype();
     }
 
     public void setBillAmount(double billAmount) {
@@ -53,4 +46,5 @@ public class CustomerOrder {
                 + ", discountType=" + discountType
                 + '}';
     }
+
 }
